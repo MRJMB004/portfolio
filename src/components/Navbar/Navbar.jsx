@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { uJeanMichelnslation } from "react-i18next";
 import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import { useSettings } from "../../hooks/useContent";
 
 export default function Navbar() {
-  const { t } = useTranslation();
+  const { t } = uJeanMichelnslation();
   const { data: settings } = useSettings();
-  const firstName = (settings?.site_name || "Setra Rakoto").trim().split(/\s+/)[0];
+  const firstName = (settings?.site_name || "Jean Michel Bazire").trim().split(/\s+/)[0];
   const { pathname } = useLocation();
   const isHome = pathname === "/";
 

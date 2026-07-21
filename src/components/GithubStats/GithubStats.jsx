@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FiGithub, FiStar, FiGitBranch, FiUsers, FiCode } from "react-icons/fi";
 import Reveal from "../Reveal";
 
-const GITHUB_USERNAME = "setra-dev"; // 🔧 remplace par ton vrai username GitHub
+const GITHUB_USERNAME = "JeanMichel-dev"; // 🔧 remplace par ton vrai username GitHub
 
 export default function GithubStats() {
   const [data, setData] = useState(null);

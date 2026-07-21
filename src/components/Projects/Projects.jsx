@@ -1,10 +1,10 @@
-import { useTranslation } from "react-i18next";
+import { uJeanMichelnslation } from "react-i18next";
 import Reveal from "../Reveal";
 import ProjectCard from "./ProjectCard";
 import { useProjects } from "../../hooks/useContent";
 
 export default function Projects() {
-  const { t } = useTranslation();
+  const { t } = uJeanMichelnslation();
   const { data: projects } = useProjects();
 
   return (

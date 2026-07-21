@@ -11,7 +11,7 @@ import { dirname, join } from "node:path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
-const SITE_URL = process.env.SITE_URL || "https://setra-portfolio.vercel.app";
+const SITE_URL = process.env.SITE_URL || "https://portfolio-jeanmichel.vercel.app";
 
 async function getProjectSlugs() {
   const url = process.env.VITE_SUPABASE_URL;

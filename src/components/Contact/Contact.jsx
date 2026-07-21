@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { uJeanMichelnslation } from "react-i18next";
 import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck, FiAlertCircle } from "react-icons/fi";
 import Reveal from "../Reveal";
 import { supabase, isSupabaseConfigured } from "../../lib/supabaseClient";
@@ -8,7 +8,7 @@ import { useSettings } from "../../hooks/useContent";
 const initialForm = { name: "", email: "", subject: "", message: "", company: "" };
 
 export default function Contact() {
-  const { t } = useTranslation();
+  const { t } = uJeanMichelnslation();
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle"); // idle | sending | sent | error
   const { data: settings } = useSettings();
@@ -60,8 +60,8 @@ export default function Contact() {
   const infos = [
     {
       icon: FiMail,
-      label: settings?.contact_email || "contact@setra.dev",
-      href: `mailto:${settings?.contact_email || "contact@setra.dev"}`,
+      label: settings?.contact_email || "contact@JeanMichel.dev",
+      href: `mailto:${settings?.contact_email || "contact@JeanMichel.dev"}`,
     },
     {
       icon: FiPhone,

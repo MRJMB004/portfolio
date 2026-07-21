@@ -18,7 +18,7 @@ const SectionFallback = () => <div className="section-pad" aria-hidden="true" />
 
 export default function Home() {
   const { data: settings } = useSettings();
-  const name = settings?.site_name || "Setra";
+  const name = settings?.site_name || "JeanMichel";
   const tagline = settings?.tagline || "Développeur Full-Stack";
 
   return (

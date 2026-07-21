@@ -1,7 +1,7 @@
-import { useTranslation } from "react-i18next";
+import { uJeanMichelnslation } from "react-i18next";
 
 export default function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const { i18n } = uJeanMichelnslation();
   const current = i18n.resolvedLanguage?.startsWith("en") ? "en" : "fr";
   const next = current === "fr" ? "en" : "fr";
 

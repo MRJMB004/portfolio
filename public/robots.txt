@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://setra-portfolio.vercel.app/sitemap.xml
+Sitemap: https://portfolio-jeanmichel.vercel.app/sitemap.xml

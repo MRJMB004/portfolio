@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-const SITE_NAME = "Setra — Développeur Full-Stack";
-const SITE_URL = "https://setra-portfolio.vercel.app"; // 🔧 remplace par ton vrai domaine
+const SITE_NAME = "JeanMichel — Développeur Full-Stack";
+const SITE_URL = "https://portfolio-jeanmichel.vercel.app"; // 🔧 remplace par ton vrai domaine
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 
 function setMeta(attr, key, value) {
@@ -45,7 +45,7 @@ export default function Seo({ title, description, url = "/", image = DEFAULT_IMA
     setMeta("property", "og:url", fullUrl);
     setMeta("property", "og:image", image);
     setMeta("property", "og:type", "website");
-    setMeta("property", "og:site_name", "Setra");
+    setMeta("property", "og:site_name", "JeanMichel");
 
     setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", fullTitle);

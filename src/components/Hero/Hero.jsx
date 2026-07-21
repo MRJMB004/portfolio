@@ -1,15 +1,15 @@
 import { FiArrowRight, FiMail, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
-import { useTranslation } from "react-i18next";
+import { uJeanMichelnslation } from "react-i18next";
 import Particles from "./Particles";
 import TypeWriter from "./TypeWriter";
 import { useSettings } from "../../hooks/useContent";
 
 export default function Hero() {
-  const { t } = useTranslation();
+  const { t } = uJeanMichelnslation();
   const roles = t("hero.roles", { returnObjects: true });
   const { data: settings } = useSettings();
 
-  const fullName = settings?.site_name || "Setra Rakoto";
+  const fullName = settings?.site_name || "Jean Michel Bazire";
   const nameWords = fullName.trim().split(/\s+/);
   const lastWord = nameWords.pop();
   const firstWords = nameWords.join(" ");

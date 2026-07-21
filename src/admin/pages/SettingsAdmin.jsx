@@ -150,7 +150,7 @@ export default function SettingsAdmin() {
               value={form.contact_email || ""}
               onChange={handleChange}
               className="admin-input"
-              placeholder="contact@setra.dev"
+              placeholder="contact@JeanMichel.dev"
             />
           </div>
           <div>

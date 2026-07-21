@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { FiArrowLeft, FiGithub, FiExternalLink, FiLayers } from "react-icons/fi";
-import { useTranslation } from "react-i18next";
+import { uJeanMichelnslation } from "react-i18next";
 import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import { getProjectBySlug, projects as staticProjects } from "../data/projects";
 import { supabase, isSupabaseConfigured } from "../lib/supabaseClient";
 
 export default function ProjectDetail() {
-  const { t } = useTranslation();
+  const { t } = uJeanMichelnslation();
   const { slug } = useParams();
   const [project, setProject] = useState(() => getProjectBySlug(slug));
   const [allProjects, setAllProjects] = useState(staticProjects);
@@ -54,7 +54,7 @@ export default function ProjectDetail() {
   return (
     <article className="section-pad pt-32">
       <Seo
-        title={`${project.title} — Setra`}
+        title={`${project.title} — JeanMichel`}
         description={project.description}
         url={`/project/${project.slug}`}
       />

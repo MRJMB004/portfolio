@@ -98,7 +98,7 @@ create table if not exists public.messages (
 -- ----------------------------------------------------------------------------
 create table if not exists public.settings (
   id int primary key default 1,
-  site_name text default 'Setra',
+  site_name text default 'JeanMichel',
   tagline text default 'Développeur Full-Stack',
   contact_email text,
   contact_phone text,

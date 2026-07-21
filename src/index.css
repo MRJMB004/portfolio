@@ -1,0 +1,134 @@
+/* Polices chargées via <link rel="stylesheet"> préconnecté dans index.html (perf) */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background-color: #0b1120;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+  border-radius: 8px;
+}
+
+.eyebrow {
+  @apply flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-accent-violet;
+}
+.eyebrow::before {
+  content: "";
+  @apply h-1.5 w-1.5 rounded-full bg-accent-violet;
+}
+
+.section-pad {
+  @apply px-6 md:px-10 lg:px-20 py-20 md:py-28;
+}
+
+.card {
+  @apply bg-bg-soft/60 border border-white/5 rounded-2xl backdrop-blur-sm;
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 rounded-xl px-6 py-3 font-medium text-white bg-gradient-brand shadow-glow transition-transform duration-300 hover:scale-[1.03] hover:shadow-glow active:scale-95;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 rounded-xl px-6 py-3 font-medium text-white border border-white/10 bg-white/5 transition-all duration-300 hover:border-accent-violet/60 hover:bg-white/10 active:scale-95;
+}
+
+.btn-danger {
+  @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-red-400 border border-red-500/20 bg-red-500/5 transition-all duration-300 hover:bg-red-500/10 active:scale-95;
+}
+
+.admin-input {
+  @apply w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-accent-violet/60 transition-colors placeholder:text-ink-muted;
+}
+
+.admin-label {
+  @apply block text-xs uppercase tracking-wider text-ink-muted mb-1.5;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  margin-left: 2px;
+  background: #8b5cf6;
+  animation: blink 1s step-end infinite;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.9), transparent 70%);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- Light mode overrides ---- */
+html.light body {
+  background-color: #f5f7fb;
+  color: #0b1120;
+}
+html.light .bg-bg {
+  background-color: #f5f7fb !important;
+}
+html.light .bg-bg-soft\/60,
+html.light .bg-bg-soft {
+  background-color: #ffffff !important;
+}
+html.light .card {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(11, 17, 32, 0.08) !important;
+}
+html.light .text-ink,
+html.light .text-white {
+  color: #0b1120 !important;
+}
+html.light .text-ink-muted,
+html.light .text-slate-400 {
+  color: #475569 !important;
+}
+html.light .border-white\/5,
+html.light .border-white\/10 {
+  border-color: rgba(11, 17, 32, 0.08) !important;
+}
+html.light .bg-white\/5 {
+  background-color: rgba(11, 17, 32, 0.04) !important;
+}
+html.light nav.navbar-scrolled {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}

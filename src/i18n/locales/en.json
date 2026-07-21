@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "accueil": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "👋 Hi, I'm",
+    "roles": ["Full-Stack Developer", "Android Developer", "Passionate Student"],
+    "tagline": "I design and build fast, modern, user-focused web and mobile applications — from Madagascar, for the world.",
+    "seeProjects": "See my projects",
+    "contactMe": "Contact me"
+  },
+  "about": {
+    "eyebrow": "About me",
+    "subtitle": "Who am I?",
+    "body": "A passionate student and developer, I love turning ideas into efficient, elegant digital solutions. Curious, self-driven and rigorous, I'm always looking to learn and take on new challenges — from web to mobile.",
+    "location": "Madagascar",
+    "role": "Student / Developer",
+    "available": "Available for opportunities",
+    "downloadCv": "Download my CV"
+  },
+  "skills": {
+    "eyebrow": "Skills",
+    "title": "What I work with"
+  },
+  "projects": {
+    "eyebrow": "Recent projects",
+    "title": "What I've built"
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "title": "My journey",
+    "educationEyebrow": "Education",
+    "educationTitle": "Continuous learning"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "How I can help"
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "title": "Got a project in mind?",
+    "subtitle": "A project idea? An opportunity? Feel free to reach out — I usually reply within 48h.",
+    "form": {
+      "name": "Your name",
+      "email": "Your email",
+      "subject": "Subject",
+      "message": "Your message",
+      "submit": "Send message",
+      "sending": "Sending…",
+      "sent": "Message sent",
+      "error": "Something went wrong. Please try again or email me directly."
+    }
+  },
+  "projectDetail": {
+    "notFound": "Project not found",
+    "back": "Back to projects",
+    "sourceCode": "Source code",
+    "liveDemo": "Live demo",
+    "screenshot": "screenshot",
+    "architecture": "Architecture",
+    "highlights": "Key highlights",
+    "otherProjects": "Other projects"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "madeWith": "Made with"
+  },
+  "language": {
+    "fr": "Français",
+    "en": "English"
+  }
+}

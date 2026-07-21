@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "accueil": "Accueil",
+    "about": "À propos",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "experience": "Expérience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "👋 Salut, je suis",
+    "roles": ["Développeur Full-Stack", "Développeur Android", "Étudiant passionné"],
+    "tagline": "Je conçois et développe des applications web et mobiles performantes, modernes et centrées sur l'utilisateur — depuis Madagascar, pour le monde.",
+    "seeProjects": "Voir mes projets",
+    "contactMe": "Me contacter"
+  },
+  "about": {
+    "eyebrow": "À propos de moi",
+    "subtitle": "Qui suis-je ?",
+    "body": "Étudiant et développeur passionné, j'aime transformer des idées en solutions numériques efficaces et élégantes. Curieux, autonome et rigoureux, je cherche toujours à apprendre et à relever de nouveaux défis — du web au mobile.",
+    "location": "Madagascar",
+    "role": "Étudiant / Développeur",
+    "available": "Disponible pour opportunités",
+    "downloadCv": "Télécharger mon CV"
+  },
+  "skills": {
+    "eyebrow": "Compétences",
+    "title": "Ce que je maîtrise"
+  },
+  "projects": {
+    "eyebrow": "Projets récents",
+    "title": "Ce que j'ai construit"
+  },
+  "experience": {
+    "eyebrow": "Expérience",
+    "title": "Mon parcours",
+    "educationEyebrow": "Formation",
+    "educationTitle": "Apprentissage continu"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Comment je peux aider"
+  },
+  "contact": {
+    "eyebrow": "Contactez-moi",
+    "title": "Un projet en tête ?",
+    "subtitle": "Une idée de projet ? Une opportunité ? N'hésitez pas à me contacter, je réponds généralement sous 48h.",
+    "form": {
+      "name": "Votre nom",
+      "email": "Votre email",
+      "subject": "Sujet",
+      "message": "Votre message",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours…",
+      "sent": "Message envoyé",
+      "error": "Échec de l'envoi. Réessaie ou écris directement par e-mail."
+    }
+  },
+  "projectDetail": {
+    "notFound": "Projet introuvable",
+    "back": "Retour aux projets",
+    "sourceCode": "Code source",
+    "liveDemo": "Démo en ligne",
+    "screenshot": "capture",
+    "architecture": "Architecture",
+    "highlights": "Points clés",
+    "otherProjects": "Autres projets"
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "madeWith": "Fait avec"
+  },
+  "language": {
+    "fr": "Français",
+    "en": "English"
+  }
+}

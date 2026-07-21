@@ -1,4 +1,4 @@
-# Portfolio React — Setra
+# Portfolio JMB
 
 Portfolio personnel moderne, responsive et animé, construit avec React + Vite + Tailwind CSS,
 avec un **contenu piloté par Supabase** et un **espace d'administration** pour tout modifier

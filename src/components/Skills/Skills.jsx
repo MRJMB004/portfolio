@@ -1,10 +1,10 @@
-import { uJeanMichelnslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import Reveal from "../Reveal";
 import SkillBar from "./SkillBar";
 import { useSkillCategories } from "../../hooks/useContent";
 
 export default function Skills() {
-  const { t } = uJeanMichelnslation();
+  const { t } = useTranslation();
   const { data: skillCategories } = useSkillCategories();
 
   return (

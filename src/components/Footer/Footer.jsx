@@ -1,9 +1,9 @@
 import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiHeart } from "react-icons/fi";
-import { uJeanMichelnslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useSettings } from "../../hooks/useContent";
 
 export default function Footer() {
-  const { t } = uJeanMichelnslation();
+  const { t } = useTranslation();
   const { data: settings } = useSettings();
   const fullName = settings?.site_name || "Jean Michel Bazire";
   const firstName = fullName.trim().split(/\s+/)[0];

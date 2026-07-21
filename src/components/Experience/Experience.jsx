@@ -1,9 +1,9 @@
-import { uJeanMichelnslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import Reveal from "../Reveal";
 import { useExperience, useEducation } from "../../hooks/useContent";
 
 export default function Experience() {
-  const { t } = uJeanMichelnslation();
+  const { t } = useTranslation();
   const { data: experience } = useExperience();
   const { data: education } = useEducation();
 

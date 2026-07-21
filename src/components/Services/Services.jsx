@@ -1,12 +1,12 @@
 import { FiCode, FiSmartphone, FiDatabase, FiTool } from "react-icons/fi";
-import { uJeanMichelnslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import Reveal from "../Reveal";
 import { useServices } from "../../hooks/useContent";
 
 const icons = { code: FiCode, phone: FiSmartphone, database: FiDatabase, tool: FiTool };
 
 export default function Services() {
-  const { t } = uJeanMichelnslation();
+  const { t } = useTranslation();
   const { data: services } = useServices();
 
   return (

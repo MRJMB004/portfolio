@@ -1,10 +1,10 @@
 import { FiMapPin, FiBookOpen, FiCheckCircle } from "react-icons/fi";
-import { uJeanMichelnslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import Reveal from "../Reveal";
 import { useStats, useSettings } from "../../hooks/useContent";
 
 export default function About() {
-  const { t } = uJeanMichelnslation();
+  const { t } = useTranslation();
   const { data: stats } = useStats();
   const { data: settings } = useSettings();
   const cvUrl = settings?.cv_url || "/cv.pdf";

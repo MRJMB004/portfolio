@@ -1,11 +1,11 @@
 import { FiArrowRight, FiMail, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
-import { uJeanMichelnslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import Particles from "./Particles";
 import TypeWriter from "./TypeWriter";
 import { useSettings } from "../../hooks/useContent";
 
 export default function Hero() {
-  const { t } = uJeanMichelnslation();
+  const { t } = useTranslation();
   const roles = t("hero.roles", { returnObjects: true });
   const { data: settings } = useSettings();
 

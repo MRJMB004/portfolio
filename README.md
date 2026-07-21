@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Portfolio React — JeanMichel
+=======
+# Portfolio JMB
+>>>>>>> 251f42e138e88d014c6676e9ecdf85a1d5c0905a
 
 Portfolio personnel moderne, responsive et animé, construit avec React + Vite + Tailwind CSS,
 avec un **contenu piloté par Supabase** et un **espace d'administration** pour tout modifier

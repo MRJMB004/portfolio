@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiFacebook, FiMenu, FiX } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import { useSettings } from "../../hooks/useContent";
+import { normalizeUrl, buildWhatsAppUrl, isExternalHref } from "../../lib/socialLinks";
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -12,6 +14,23 @@ export default function Navbar() {
   const firstName = (settings?.site_name || "Jean Michel Bazire").trim().split(/\s+/)[0];
   const { pathname } = useLocation();
   const isHome = pathname === "/";
+
+  // Icônes sociales rapides à droite de la navbar. On retombe sur les pages
+  // d'accueil GitHub/LinkedIn si aucun lien n'est configuré dans l'admin.
+  const navSocialLinks = [
+    { Icon: FiGithub, href: normalizeUrl(settings?.github_url) || "https://github.com/", label: "GitHub" },
+    { Icon: FiLinkedin, href: normalizeUrl(settings?.linkedin_url) || "https://linkedin.com/", label: "LinkedIn" },
+    normalizeUrl(settings?.facebook_url) && {
+      Icon: FiFacebook,
+      href: normalizeUrl(settings.facebook_url),
+      label: "Facebook",
+    },
+    buildWhatsAppUrl(settings?.whatsapp_url) && {
+      Icon: FaWhatsapp,
+      href: buildWhatsAppUrl(settings.whatsapp_url),
+      label: "WhatsApp",
+    },
+  ].filter(Boolean);
 
   const links = [
     { id: "accueil", label: t("nav.accueil") },
@@ -106,24 +125,18 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href="https://github.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 transition-all hover:border-accent-blue/60 hover:-translate-y-0.5"
-            aria-label="GitHub"
-          >
-            <FiGithub size={16} />
-          </a>
-          <a
-            href="https://linkedin.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 transition-all hover:border-accent-blue/60 hover:-translate-y-0.5"
-            aria-label="LinkedIn"
-          >
-            <FiLinkedin size={16} />
-          </a>
+          {navSocialLinks.map(({ Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target={isExternalHref(href) ? "_blank" : undefined}
+              rel={isExternalHref(href) ? "noreferrer" : undefined}
+              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 transition-all hover:border-accent-blue/60 hover:-translate-y-0.5"
+              aria-label={label}
+            >
+              <Icon size={16} />
+            </a>
+          ))}
           <LanguageSwitcher />
           <ThemeToggle />
         </div>

@@ -97,20 +97,25 @@ export default function ProjectDetail() {
         </div>
       </Reveal>
 
-      <Reveal delay={100}>
-        <div className="grid sm:grid-cols-3 gap-4 mt-14">
-          {Array.from({ length: project.screenshots }).map((_, i) => (
-            <div
-              key={i}
-              className="aspect-video rounded-2xl border border-white/10 bg-gradient-to-br from-accent-blue/15 to-accent-violet/15 grid place-items-center overflow-hidden"
-            >
-              <span className="text-ink-muted/50 text-sm font-mono">
-                {t("projectDetail.screenshot")} {i + 1}/{project.screenshots}
-              </span>
-            </div>
-          ))}
-        </div>
-      </Reveal>
+      {project.screenshot_urls?.length > 0 && (
+        <Reveal delay={100}>
+          <div className="grid sm:grid-cols-3 gap-4 mt-14">
+            {project.screenshot_urls.map((url, i) => (
+              <div
+                key={url}
+                className="aspect-video rounded-2xl border border-white/10 bg-gradient-to-br from-accent-blue/15 to-accent-violet/15 overflow-hidden"
+              >
+                <img
+                  src={url}
+                  alt={`${project.title} — capture ${i + 1}`}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      )}
 
       <div className="grid md:grid-cols-2 gap-10 mt-16">
         <Reveal>

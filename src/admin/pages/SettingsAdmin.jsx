@@ -11,6 +11,9 @@ const empty = {
   location: "",
   github_url: "",
   linkedin_url: "",
+  twitter_url: "",
+  facebook_url: "",
+  whatsapp_url: "",
   avatar_url: "",
 };
 
@@ -178,6 +181,45 @@ export default function SettingsAdmin() {
             <input name="linkedin_url" value={form.linkedin_url || ""} onChange={handleChange} className="admin-input" />
           </div>
         </div>
+        <div>
+          <label className="admin-label">Lien Twitter / X (optionnel)</label>
+          <input
+            name="twitter_url"
+            value={form.twitter_url || ""}
+            onChange={handleChange}
+            className="admin-input"
+            placeholder="https://x.com/..."
+          />
+        </div>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label className="admin-label">Lien Facebook (optionnel)</label>
+            <input
+              name="facebook_url"
+              value={form.facebook_url || ""}
+              onChange={handleChange}
+              className="admin-input"
+              placeholder="https://facebook.com/..."
+            />
+          </div>
+          <div>
+            <label className="admin-label">WhatsApp (optionnel)</label>
+            <input
+              name="whatsapp_url"
+              value={form.whatsapp_url || ""}
+              onChange={handleChange}
+              className="admin-input"
+              placeholder="+261 34 00 000 00 ou https://wa.me/..."
+            />
+          </div>
+        </div>
+        <p className="text-ink-muted text-xs">
+          Laisse un champ vide pour masquer son icône sur le site. Tu peux coller un lien avec ou
+          sans "https://" devant (ex: "linkedin.com/in/toi" fonctionne aussi bien que
+          "https://linkedin.com/in/toi") : le site ajoute automatiquement le protocole manquant, ce
+          qui évite l'erreur 404 qui se produisait quand un lien était enregistré sans "https://".
+          Pour WhatsApp, indique juste ton numéro avec l'indicatif pays (ex: "+261340000000").
+        </p>
 
         {status === "ok" && (
           <p className="flex items-center gap-2 text-sm text-emerald-400">

@@ -1,8 +1,10 @@
-import { FiArrowRight, FiMail, FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import { FiArrowRight, FiMail, FiGithub, FiLinkedin, FiTwitter, FiFacebook } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import Particles from "./Particles";
 import TypeWriter from "./TypeWriter";
 import { useSettings } from "../../hooks/useContent";
+import { normalizeUrl, buildWhatsAppUrl, isExternalHref } from "../../lib/socialLinks";
 
 export default function Hero() {
   const { t } = useTranslation();
@@ -13,6 +15,39 @@ export default function Hero() {
   const nameWords = fullName.trim().split(/\s+/);
   const lastWord = nameWords.pop();
   const firstWords = nameWords.join(" ");
+
+  const socialLinks = [
+    normalizeUrl(settings?.github_url) && {
+      Icon: FiGithub,
+      href: normalizeUrl(settings.github_url),
+      label: "GitHub",
+    },
+    normalizeUrl(settings?.linkedin_url) && {
+      Icon: FiLinkedin,
+      href: normalizeUrl(settings.linkedin_url),
+      label: "LinkedIn",
+    },
+    normalizeUrl(settings?.twitter_url) && {
+      Icon: FiTwitter,
+      href: normalizeUrl(settings.twitter_url),
+      label: "Twitter / X",
+    },
+    normalizeUrl(settings?.facebook_url) && {
+      Icon: FiFacebook,
+      href: normalizeUrl(settings.facebook_url),
+      label: "Facebook",
+    },
+    buildWhatsAppUrl(settings?.whatsapp_url) && {
+      Icon: FaWhatsapp,
+      href: buildWhatsAppUrl(settings.whatsapp_url),
+      label: "WhatsApp",
+    },
+    settings?.contact_email && {
+      Icon: FiMail,
+      href: `mailto:${settings.contact_email}`,
+      label: "Email",
+    },
+  ].filter(Boolean);
 
   return (
     <section
@@ -42,10 +77,13 @@ export default function Hero() {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            {[FiGithub, FiLinkedin, FiTwitter, FiMail].map((Icon, i) => (
+            {socialLinks.map(({ Icon, href, label }) => (
               <a
-                key={i}
-                href="#contact"
+                key={label}
+                href={href}
+                target={isExternalHref(href) ? "_blank" : undefined}
+                rel={isExternalHref(href) ? "noreferrer" : undefined}
+                aria-label={label}
                 className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-accent-violet/60 hover:shadow-glow"
               >
                 <Icon size={17} />

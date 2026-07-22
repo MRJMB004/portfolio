@@ -4,6 +4,7 @@ import { FiArrowLeft, FiGithub, FiExternalLink, FiLayers } from "react-icons/fi"
 import { useTranslation } from "react-i18next";
 import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
+import Lightbox from "../components/Lightbox/Lightbox";
 import { getProjectBySlug, projects as staticProjects } from "../data/projects";
 import { supabase, isSupabaseConfigured } from "../lib/supabaseClient";
 
@@ -13,6 +14,7 @@ export default function ProjectDetail() {
   const [project, setProject] = useState(() => getProjectBySlug(slug));
   const [allProjects, setAllProjects] = useState(staticProjects);
   const [loading, setLoading] = useState(isSupabaseConfigured);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   useEffect(() => {
     if (!isSupabaseConfigured) return;
@@ -101,21 +103,37 @@ export default function ProjectDetail() {
         <Reveal delay={100}>
           <div className="grid sm:grid-cols-3 gap-4 mt-14">
             {project.screenshot_urls.map((url, i) => (
-              <div
+              <button
                 key={url}
-                className="aspect-video rounded-2xl border border-white/10 bg-gradient-to-br from-accent-blue/15 to-accent-violet/15 overflow-hidden"
+                type="button"
+                onClick={() => setLightboxIndex(i)}
+                aria-label={`Agrandir la capture ${i + 1}`}
+                className="group relative aspect-video rounded-2xl border border-white/10 bg-gradient-to-br from-accent-blue/15 to-accent-violet/15 overflow-hidden cursor-zoom-in text-left"
               >
                 <img
                   src={url}
                   alt={`${project.title} — capture ${i + 1}`}
                   loading="lazy"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-              </div>
+                <div className="absolute inset-0 flex items-center justify-center bg-bg/0 group-hover:bg-bg/40 transition-colors">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-xs font-medium text-white px-3 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm">
+                    {t("projectDetail.viewFullscreen", "Agrandir")}
+                  </span>
+                </div>
+              </button>
             ))}
           </div>
         </Reveal>
       )}
+
+      <Lightbox
+        images={project.screenshot_urls || []}
+        index={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onIndexChange={setLightboxIndex}
+        alt={(i) => `${project.title} — capture ${i + 1}`}
+      />
 
       <div className="grid md:grid-cols-2 gap-10 mt-16">
         <Reveal>

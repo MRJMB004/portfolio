@@ -2,7 +2,7 @@ import { FiGithub, FiLinkedin, FiTwitter, FiFacebook, FiMail, FiHeart } from "re
 import { FaWhatsapp } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useSettings } from "../../hooks/useContent";
-import { normalizeUrl, buildWhatsAppUrl, isExternalHref } from "../../lib/socialLinks";
+import { normalizeUrl, buildWhatsAppUrl, buildFacebookUrl, buildTwitterUrl, isExternalHref } from "../../lib/socialLinks";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -21,14 +21,14 @@ export default function Footer() {
       href: normalizeUrl(settings.linkedin_url),
       label: "LinkedIn",
     },
-    normalizeUrl(settings?.twitter_url) && {
+    buildTwitterUrl(settings?.twitter_url) && {
       Icon: FiTwitter,
-      href: normalizeUrl(settings.twitter_url),
+      href: buildTwitterUrl(settings.twitter_url),
       label: "Twitter / X",
     },
-    normalizeUrl(settings?.facebook_url) && {
+    buildFacebookUrl(settings?.facebook_url) && {
       Icon: FiFacebook,
-      href: normalizeUrl(settings.facebook_url),
+      href: buildFacebookUrl(settings.facebook_url),
       label: "Facebook",
     },
     buildWhatsAppUrl(settings?.whatsapp_url) && {

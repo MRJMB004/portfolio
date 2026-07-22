@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import Particles from "./Particles";
 import TypeWriter from "./TypeWriter";
 import { useSettings } from "../../hooks/useContent";
-import { normalizeUrl, buildWhatsAppUrl, isExternalHref } from "../../lib/socialLinks";
+import { normalizeUrl, buildWhatsAppUrl, buildFacebookUrl, buildTwitterUrl, isExternalHref } from "../../lib/socialLinks";
 
 export default function Hero() {
   const { t } = useTranslation();
@@ -27,14 +27,14 @@ export default function Hero() {
       href: normalizeUrl(settings.linkedin_url),
       label: "LinkedIn",
     },
-    normalizeUrl(settings?.twitter_url) && {
+    buildTwitterUrl(settings?.twitter_url) && {
       Icon: FiTwitter,
-      href: normalizeUrl(settings.twitter_url),
+      href: buildTwitterUrl(settings.twitter_url),
       label: "Twitter / X",
     },
-    normalizeUrl(settings?.facebook_url) && {
+    buildFacebookUrl(settings?.facebook_url) && {
       Icon: FiFacebook,
-      href: normalizeUrl(settings.facebook_url),
+      href: buildFacebookUrl(settings.facebook_url),
       label: "Facebook",
     },
     buildWhatsAppUrl(settings?.whatsapp_url) && {

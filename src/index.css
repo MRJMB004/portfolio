@@ -132,3 +132,13 @@ html.light .bg-white\/5 {
 html.light nav.navbar-scrolled {
   background-color: rgba(255, 255, 255, 0.85) !important;
 }
+
+/* Fondu d'ouverture pour la visionneuse d'images (Lightbox) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

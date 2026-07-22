@@ -188,7 +188,7 @@ export default function SettingsAdmin() {
             value={form.twitter_url || ""}
             onChange={handleChange}
             className="admin-input"
-            placeholder="https://x.com/..."
+            placeholder="https://x.com/... ou juste ton identifiant, ex: mrjmb004"
           />
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -199,7 +199,7 @@ export default function SettingsAdmin() {
               value={form.facebook_url || ""}
               onChange={handleChange}
               className="admin-input"
-              placeholder="https://facebook.com/..."
+              placeholder="https://facebook.com/... ou juste ton identifiant, ex: mrjmb004"
             />
           </div>
           <div>
@@ -218,7 +218,10 @@ export default function SettingsAdmin() {
           sans "https://" devant (ex: "linkedin.com/in/toi" fonctionne aussi bien que
           "https://linkedin.com/in/toi") : le site ajoute automatiquement le protocole manquant, ce
           qui évite l'erreur 404 qui se produisait quand un lien était enregistré sans "https://".
-          Pour WhatsApp, indique juste ton numéro avec l'indicatif pays (ex: "+261340000000").
+          Pour Facebook et Twitter/X, tu peux aussi taper juste ton identifiant (ex: "mrjmb004")
+          sans coller le lien complet — le site reconstruit automatiquement
+          "facebook.com/mrjmb004" ou "x.com/mrjmb004". Pour WhatsApp, indique juste ton numéro
+          avec l'indicatif pays (ex: "+261340000000").
         </p>
 
         {status === "ok" && (

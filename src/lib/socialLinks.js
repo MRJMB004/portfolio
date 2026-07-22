@@ -35,3 +35,48 @@ export function buildWhatsAppUrl(value) {
 export function isExternalHref(href) {
   return !!href && !href.startsWith("mailto:") && !href.startsWith("tel:");
 }
+
+// ----------------------------------------------------------------------------
+// Bug corrigé : quand on saisissait juste un identifiant dans le champ
+// Facebook ou Twitter/X (ex: "mrjmb004", sans "facebook.com/" ni "https://"),
+// normalizeUrl() le transformait en "https://mrjmb004" — un nom de domaine qui
+// n'existe pas. Résultat : le lien n'affichait rien (Facebook) ou ne s'ouvrait
+// plus du tout (Twitter/X).
+//
+// buildFacebookUrl() et buildTwitterUrl() acceptent maintenant, comme pour
+// WhatsApp :
+//   - une URL complète ("https://facebook.com/mrjmb004") → inchangée
+//   - un lien sans protocole ("facebook.com/mrjmb004" ou "x.com/mrjmb004")
+//     → "https://" est ajouté devant
+//   - un simple identifiant ("mrjmb004" ou "@mrjmb004") → reconstruit en
+//     "https://facebook.com/mrjmb004" ou "https://x.com/mrjmb004"
+// ----------------------------------------------------------------------------
+function extractHandle(value) {
+  return value
+    .trim()
+    .replace(/^@/, "")
+    .replace(/^\/+/, "")
+    .replace(/\/+$/, "");
+}
+
+export function buildFacebookUrl(value) {
+  if (!value) return null;
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  if (/^(www\.)?(facebook|fb)\.(com|me)\//i.test(trimmed)) return `https://${trimmed}`;
+  const handle = extractHandle(trimmed);
+  if (!handle) return null;
+  return `https://facebook.com/${handle}`;
+}
+
+export function buildTwitterUrl(value) {
+  if (!value) return null;
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  if (/^(www\.)?(twitter|x)\.com\//i.test(trimmed)) return `https://${trimmed}`;
+  const handle = extractHandle(trimmed);
+  if (!handle) return null;
+  return `https://x.com/${handle}`;
+}

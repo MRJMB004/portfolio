@@ -6,7 +6,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import { useSettings } from "../../hooks/useContent";
-import { normalizeUrl, buildWhatsAppUrl, isExternalHref } from "../../lib/socialLinks";
+import { normalizeUrl, buildWhatsAppUrl, buildFacebookUrl, isExternalHref } from "../../lib/socialLinks";
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -20,9 +20,9 @@ export default function Navbar() {
   const navSocialLinks = [
     { Icon: FiGithub, href: normalizeUrl(settings?.github_url) || "https://github.com/", label: "GitHub" },
     { Icon: FiLinkedin, href: normalizeUrl(settings?.linkedin_url) || "https://linkedin.com/", label: "LinkedIn" },
-    normalizeUrl(settings?.facebook_url) && {
+    buildFacebookUrl(settings?.facebook_url) && {
       Icon: FiFacebook,
-      href: normalizeUrl(settings.facebook_url),
+      href: buildFacebookUrl(settings.facebook_url),
       label: "Facebook",
     },
     buildWhatsAppUrl(settings?.whatsapp_url) && {

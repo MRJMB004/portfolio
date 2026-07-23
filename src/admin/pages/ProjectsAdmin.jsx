@@ -151,7 +151,7 @@ export default function ProjectsAdmin() {
 
   return (
     <AdminLayout>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between flex-wrap gap-4 mb-8">
         <div>
           <h1 className="font-display text-2xl font-bold mb-1">Projets</h1>
           <p className="text-ink-muted text-sm">Gère les projets affichés sur le portfolio.</p>
@@ -164,8 +164,8 @@ export default function ProjectsAdmin() {
       {loading ? (
         <p className="text-ink-muted text-sm">Chargement…</p>
       ) : (
-        <div className="card overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="card overflow-hidden overflow-x-auto">
+          <table className="w-full text-sm min-w-[640px]">
             <thead>
               <tr className="text-left text-ink-muted border-b border-white/10">
                 <th className="px-5 py-3 font-medium"></th>

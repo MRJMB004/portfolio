@@ -10,7 +10,7 @@ export default function CVSection() {
     <section id="cv" className="section-pad">
       <Reveal>
         <p className="eyebrow mb-4">Mon CV</p>
-        <h3 className="font-display text-3xl font-bold mb-4">Curriculum Vitae</h3>
+        <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4">Curriculum Vitae</h3>
         <p className="text-ink-muted mb-10 max-w-lg">
           Un aperçu rapide de mon parcours, ou téléchargez directement le PDF complet.
         </p>

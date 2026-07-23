@@ -11,7 +11,7 @@ export default function Skills() {
     <section id="skills" className="section-pad bg-bg-soft/30">
       <Reveal>
         <p className="eyebrow mb-4">{t("skills.eyebrow")}</p>
-        <h3 className="font-display text-3xl font-bold mb-12">{t("skills.title")}</h3>
+        <h3 className="font-display text-2xl sm:text-3xl font-bold mb-12">{t("skills.title")}</h3>
       </Reveal>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

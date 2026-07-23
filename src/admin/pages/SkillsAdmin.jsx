@@ -92,7 +92,7 @@ export default function SkillsAdmin() {
 
   return (
     <AdminLayout>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between flex-wrap gap-4 mb-8">
         <div>
           <h1 className="font-display text-2xl font-bold mb-1">Compétences</h1>
           <p className="text-ink-muted text-sm">Catégories et niveaux affichés sur le portfolio.</p>

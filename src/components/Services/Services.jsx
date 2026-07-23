@@ -13,7 +13,7 @@ export default function Services() {
     <section id="services" className="section-pad">
       <Reveal>
         <p className="eyebrow mb-4">{t("services.eyebrow")}</p>
-        <h3 className="font-display text-3xl font-bold mb-12">{t("services.title")}</h3>
+        <h3 className="font-display text-2xl sm:text-3xl font-bold mb-12">{t("services.title")}</h3>
       </Reveal>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -13,7 +13,7 @@ export default function Experience() {
         <div>
           <Reveal>
             <p className="eyebrow mb-4">{t("experience.eyebrow")}</p>
-            <h3 className="font-display text-3xl font-bold mb-10">{t("experience.title")}</h3>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold mb-10">{t("experience.title")}</h3>
           </Reveal>
 
           <div className="relative pl-8">
@@ -34,7 +34,7 @@ export default function Experience() {
         <div>
           <Reveal delay={100}>
             <p className="eyebrow mb-4">{t("experience.educationEyebrow")}</p>
-            <h3 className="font-display text-3xl font-bold mb-10">{t("experience.educationTitle")}</h3>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold mb-10">{t("experience.educationTitle")}</h3>
           </Reveal>
           <div className="space-y-4">
             {education.map((e, i) => (

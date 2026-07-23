@@ -13,7 +13,7 @@ export default function Projects() {
         <div className="flex items-center justify-between flex-wrap gap-4 mb-12">
           <div>
             <p className="eyebrow mb-4">{t("projects.eyebrow")}</p>
-            <h3 className="font-display text-3xl font-bold">{t("projects.title")}</h3>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold">{t("projects.title")}</h3>
           </div>
         </div>
       </Reveal>

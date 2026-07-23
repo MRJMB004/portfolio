@@ -75,7 +75,7 @@ export default function Contact() {
     <section id="contact" className="section-pad bg-bg-soft/30">
       <Reveal>
         <p className="eyebrow mb-4">{t("contact.eyebrow")}</p>
-        <h3 className="font-display text-3xl font-bold mb-4">{t("contact.title")}</h3>
+        <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4">{t("contact.title")}</h3>
         <p className="text-ink-muted mb-12 max-w-lg">{t("contact.subtitle")}</p>
       </Reveal>
 

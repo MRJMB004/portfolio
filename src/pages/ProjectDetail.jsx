@@ -71,7 +71,7 @@ export default function ProjectDetail() {
         <p className="text-xs uppercase tracking-wider text-accent-blue font-mono mb-2">
           {project.category}
         </p>
-        <h1 className="font-display text-3xl md:text-5xl font-bold mb-4">{project.title}</h1>
+        <h1 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold mb-4">{project.title}</h1>
         <p className="text-ink-muted max-w-2xl leading-relaxed mb-6">
           {project.full_description || project.fullDescription}
         </p>

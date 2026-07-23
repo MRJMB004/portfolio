@@ -64,7 +64,7 @@ export default function GithubStats() {
     <section id="github" className="section-pad bg-bg-soft/30">
       <Reveal>
         <p className="eyebrow mb-4">GitHub</p>
-        <h3 className="font-display text-3xl font-bold mb-2 flex items-center gap-3">
+        <h3 className="font-display text-2xl sm:text-3xl font-bold mb-2 flex items-center gap-3">
           <FiGithub /> Activité open-source
         </h3>
         <p className="text-ink-muted mb-10 max-w-lg">

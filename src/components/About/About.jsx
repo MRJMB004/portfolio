@@ -35,7 +35,7 @@ export default function About() {
         </Reveal>
 
         <Reveal delay={120}>
-          <h3 className="font-display text-3xl font-bold mb-4">{t("about.subtitle")}</h3>
+          <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4">{t("about.subtitle")}</h3>
           <p className="text-ink-muted leading-relaxed mb-6">{t("about.body")}</p>
 
           <div className="space-y-3 mb-8 text-sm">
@@ -60,7 +60,7 @@ export default function About() {
         {stats.map((s, i) => (
           <Reveal key={s.label} delay={i * 80}>
             <div className="card px-5 py-7 text-center transition-transform duration-300 hover:-translate-y-1 hover:shadow-glow">
-              <div className="font-display text-3xl font-bold bg-gradient-brand bg-clip-text text-transparent">
+              <div className="font-display text-2xl sm:text-3xl font-bold bg-gradient-brand bg-clip-text text-transparent">
                 {s.value}
               </div>
               <div className="text-ink-muted text-sm mt-1">{s.label}</div>

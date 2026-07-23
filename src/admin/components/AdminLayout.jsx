@@ -43,9 +43,9 @@ export default function AdminLayout({ children }) {
 
   const sidebarContent = (
     <>
-      <div className="px-6 py-6 border-b border-white/10 flex items-center justify-between">
-        <Link to="/admin" className="flex items-center gap-2 font-display font-bold text-lg">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-brand text-sm">
+      <div className="px-5 py-5 border-b border-white/10 flex items-center justify-between">
+        <Link to="/admin" className="flex items-center gap-2 font-display font-bold text-base">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-brand text-sm">
             S
           </span>
           Admin
@@ -55,11 +55,11 @@ export default function AdminLayout({ children }) {
           className="md:hidden text-ink-muted hover:text-white"
           aria-label="Fermer le menu"
         >
-          <FiX size={22} />
+          <FiX size={20} />
         </button>
       </div>
 
-      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+      <nav className="flex-1 px-2.5 py-3 space-y-0.5 overflow-y-auto">
         {nav.map((item) => (
           <NavLink
             key={item.to}
@@ -67,36 +67,36 @@ export default function AdminLayout({ children }) {
             end={item.end}
             onClick={() => setOpen(false)}
             className={({ isActive }) =>
-              `flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm transition-colors ${
+              `flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors ${
                 isActive
                   ? "bg-gradient-brand text-white"
                   : "text-ink-muted hover:bg-white/5 hover:text-white"
               }`
             }
           >
-            <item.icon size={16} />
+            <item.icon size={15} />
             {item.label}
           </NavLink>
         ))}
       </nav>
 
-      <div className="px-3 py-4 border-t border-white/10 space-y-1">
+      <div className="px-2.5 py-3 border-t border-white/10 space-y-0.5">
         <a
           href="/"
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm text-ink-muted hover:bg-white/5 hover:text-white transition-colors"
+          className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-ink-muted hover:bg-white/5 hover:text-white transition-colors"
         >
-          <FiExternalLink size={16} /> Voir le site
+          <FiExternalLink size={15} /> Voir le site
         </a>
         <button
           onClick={signOut}
-          className="w-full flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm text-ink-muted hover:bg-white/5 hover:text-red-400 transition-colors"
+          className="w-full flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-ink-muted hover:bg-white/5 hover:text-red-400 transition-colors"
         >
-          <FiLogOut size={16} /> Déconnexion
+          <FiLogOut size={15} /> Déconnexion
         </button>
         {user?.email && (
-          <p className="px-4 pt-2 text-xs text-ink-muted/60 truncate">{user.email}</p>
+          <p className="px-3 pt-1.5 text-xs text-ink-muted/60 truncate">{user.email}</p>
         )}
       </div>
     </>
@@ -132,7 +132,7 @@ export default function AdminLayout({ children }) {
 
       {/* Sidebar : fixe en overlay sur mobile, statique en colonne sur desktop */}
       <aside
-        className={`fixed md:static inset-y-0 left-0 z-50 w-72 max-w-[85vw] md:w-64 md:max-w-none shrink-0 border-r border-white/10 bg-bg-soft flex flex-col transition-transform duration-300 md:translate-x-0 ${
+        className={`fixed md:static inset-y-0 left-0 z-50 w-60 max-w-[70vw] md:w-64 md:max-w-none shrink-0 border-r border-white/10 bg-bg-soft flex flex-col transition-transform duration-300 md:translate-x-0 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >

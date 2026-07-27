@@ -11,7 +11,11 @@
 //
 // La clé n'est JAMAIS envoyée au navigateur : elle reste côté serveur.
 
-const MODEL = "gemini-2.5-flash";
+// Alias "toujours à jour" : Google le fait pointer automatiquement vers son
+// dernier modèle Flash stable, ce qui évite d'avoir à changer ce nom à chaque
+// fois que Google sort une nouvelle version (ex: gemini-2.5-flash a été
+// remplacé par gemini-3.6-flash quelques mois après son lancement).
+const MODEL = "gemini-flash-latest";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -69,10 +73,13 @@ export default async function handler(req, res) {
 
   try {
     const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": apiKey,
+        },
         body: JSON.stringify({
           systemInstruction,
           contents,

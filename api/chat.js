@@ -11,11 +11,21 @@
 //
 // La clé n'est JAMAIS envoyée au navigateur : elle reste côté serveur.
 
-// "Flash-Lite" : légèrement moins puissant que le Flash "phare", mais son quota
-// gratuit est nettement plus généreux (pensé par Google pour les usages à
-// volume plus élevé) — largement suffisant pour un chatbot de portfolio qui
-// répond à des questions simples sur un profil.
-const MODEL = "gemini-2.5-flash-lite";
+// Liste de modèles à essayer, du plus récent/rapide au plus "de secours".
+// Google retire régulièrement d'anciens modèles (ex: toute la génération 2.0
+// a été coupée le 1er juin 2026), ce qui casse l'appel avec une erreur 404
+// ("model not found") si on ne cible qu'un seul modèle en dur. Pour éviter
+// que le chatbot tombe en panne à chaque retrait, on essaie les modèles dans
+// l'ordre ci-dessous et on passe automatiquement au suivant en cas d'échec
+// (404 = modèle retiré, 429 = quota gratuit épuisé pour ce modèle).
+//
+// Pour changer de modèle "principal" plus tard, il suffit de modifier cette
+// liste — aucune autre partie du code à toucher.
+const MODELS = [
+  "gemini-3.5-flash-lite", // principal : rapide et quota gratuit généreux
+  "gemini-3.1-flash-lite", // repli 1 : génération précédente, encore dispo
+  "gemini-2.5-flash-lite", // repli 2 : ancienne génération, en dernier recours
+];
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -71,54 +81,87 @@ export default async function handler(req, res) {
     parts: [{ text: m.text }],
   }));
 
-  try {
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-goog-api-key": apiKey,
-        },
-        body: JSON.stringify({
-          systemInstruction,
-          contents,
-          generationConfig: {
-            temperature: 0.6,
-            // Budget généreux : le modèle utilise une partie de ces tokens
-            // pour "réfléchir" en interne avant de répondre, donc on laisse
-            // de la marge pour que la réponse visible ne soit jamais coupée.
-            maxOutputTokens: 1024,
+  const body = JSON.stringify({
+    systemInstruction,
+    contents,
+    generationConfig: {
+      temperature: 0.6,
+      // Budget généreux : le modèle utilise une partie de ces tokens
+      // pour "réfléchir" en interne avant de répondre, donc on laisse
+      // de la marge pour que la réponse visible ne soit jamais coupée.
+      maxOutputTokens: 1024,
+    },
+  });
+
+  // On essaie chaque modèle de la liste dans l'ordre, jusqu'à ce qu'un
+  // appel réussisse. `lastStatus`/`lastDetail` gardent la trace du dernier
+  // échec pour construire un message d'erreur pertinent si TOUS échouent.
+  let lastStatus = null;
+  let lastDetail = null;
+
+  for (const model of MODELS) {
+    try {
+      const geminiRes = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": apiKey,
           },
-        }),
+          body,
+        }
+      );
+
+      if (!geminiRes.ok) {
+        const detail = await geminiRes.text();
+        lastStatus = geminiRes.status;
+        lastDetail = detail;
+        console.error(`[chat] Échec Gemini (modèle "${model}"):`, geminiRes.status, detail);
+
+        // 404 (modèle retiré/inconnu) ou 429 (quota épuisé pour ce modèle) :
+        // on tente le modèle de secours suivant plutôt que d'abandonner.
+        if (geminiRes.status === 404 || geminiRes.status === 429) {
+          continue;
+        }
+
+        // Autre erreur (400, 500, etc.) : peu de chances qu'un autre modèle
+        // s'en sorte mieux, mais on essaie quand même le suivant par
+        // sécurité, sauf s'il ne reste plus de modèle dans la liste.
+        continue;
       }
-    );
 
-    if (!geminiRes.ok) {
-      const detail = await geminiRes.text();
-      console.error("[chat] Échec Gemini:", geminiRes.status, detail);
+      const data = await geminiRes.json();
+      const reply = data?.candidates?.[0]?.content?.parts?.map((p) => p.text).join("").trim();
 
-      if (geminiRes.status === 429) {
-        return res.status(429).json({
-          error: "Trop de questions en peu de temps (limite du plan gratuit). Réessaie dans une minute.",
+      if (model !== MODELS[0]) {
+        console.warn(`[chat] Réponse obtenue via le modèle de secours "${model}".`);
+      }
+
+      if (!reply) {
+        return res.status(200).json({
+          reply: "Désolé, je n'ai pas pu générer de réponse claire. Peux-tu reformuler ta question ?",
         });
       }
 
-      return res.status(502).json({ error: "Le chatbot est momentanément indisponible, réessaie bientôt." });
+      return res.status(200).json({ reply });
+    } catch (err) {
+      // Erreur réseau (pas une réponse HTTP d'erreur) : on note et on
+      // passe au modèle suivant.
+      lastStatus = lastStatus ?? "network_error";
+      lastDetail = err?.message || String(err);
+      console.error(`[chat] Erreur réseau avec le modèle "${model}":`, err);
     }
-
-    const data = await geminiRes.json();
-    const reply = data?.candidates?.[0]?.content?.parts?.map((p) => p.text).join("").trim();
-
-    if (!reply) {
-      return res.status(200).json({
-        reply: "Désolé, je n'ai pas pu générer de réponse claire. Peux-tu reformuler ta question ?",
-      });
-    }
-
-    return res.status(200).json({ reply });
-  } catch (err) {
-    console.error("[chat] Erreur serveur:", err);
-    return res.status(500).json({ error: "Erreur serveur, réessaie plus tard." });
   }
+
+  // Tous les modèles de la liste ont échoué.
+  console.error("[chat] Tous les modèles ont échoué. Dernière erreur:", lastStatus, lastDetail);
+
+  if (lastStatus === 429) {
+    return res.status(429).json({
+      error: "Trop de questions en peu de temps (limite du plan gratuit). Réessaie dans une minute.",
+    });
+  }
+
+  return res.status(502).json({ error: "Le chatbot est momentanément indisponible, réessaie bientôt." });
 }

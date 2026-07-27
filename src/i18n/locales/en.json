@@ -82,6 +82,7 @@
     "send": "Send",
     "typing": "typing…",
     "error": "Oops, I couldn't reply. Please try again in a moment.",
+    "cooldown": "Wait {{seconds}}s before the next message…",
     "openLabel": "Open chat",
     "closeLabel": "Close chat",
     "quickQuestions": [

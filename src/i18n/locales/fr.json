@@ -82,6 +82,7 @@
     "send": "Envoyer",
     "typing": "en train d'écrire…",
     "error": "Oups, je n'ai pas pu répondre. Réessaie dans un instant.",
+    "cooldown": "Patiente {{seconds}}s avant le prochain message…",
     "openLabel": "Ouvrir le chat",
     "closeLabel": "Fermer le chat",
     "quickQuestions": [

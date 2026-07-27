@@ -35,7 +35,16 @@ export default function ChatWidget() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [cooldown, setCooldown] = useState(0); // secondes restantes avant de pouvoir renvoyer un message
   const scrollRef = useRef(null);
+  const cooldownRef = useRef(null);
+
+  const COOLDOWN_SECONDS = 3;
+
+  // Nettoyage du minuteur de cooldown si le composant est démonté
+  useEffect(() => {
+    return () => clearInterval(cooldownRef.current);
+  }, []);
 
   // Message d'accueil, une seule fois à l'ouverture
   useEffect(() => {
@@ -53,7 +62,7 @@ export default function ChatWidget() {
 
   async function sendMessage(text) {
     const trimmed = text.trim();
-    if (!trimmed || loading) return;
+    if (!trimmed || loading || cooldown > 0) return;
 
     const nextMessages = [...messages, { role: "user", text: trimmed }];
     setMessages(nextMessages);
@@ -91,6 +100,17 @@ export default function ChatWidget() {
       setError(err.message || t("chatbot.error"));
     } finally {
       setLoading(false);
+      setCooldown(COOLDOWN_SECONDS);
+      clearInterval(cooldownRef.current);
+      cooldownRef.current = setInterval(() => {
+        setCooldown((s) => {
+          if (s <= 1) {
+            clearInterval(cooldownRef.current);
+            return 0;
+          }
+          return s - 1;
+        });
+      }, 1000);
     }
   }
 
@@ -156,7 +176,8 @@ export default function ChatWidget() {
                   <button
                     key={q}
                     onClick={() => sendMessage(q)}
-                    className="text-xs px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-ink-muted hover:text-white hover:border-accent-violet/60 transition-colors"
+                    disabled={cooldown > 0}
+                    className="text-xs px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-ink-muted hover:text-white hover:border-accent-violet/60 transition-colors disabled:opacity-40 disabled:hover:text-ink-muted disabled:hover:border-white/10"
                   >
                     {q}
                   </button>
@@ -171,22 +192,29 @@ export default function ChatWidget() {
               e.preventDefault();
               sendMessage(input);
             }}
-            className="flex items-center gap-2 border-t border-white/10 p-3"
+            className="border-t border-white/10 p-3"
           >
-            <input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder={t("chatbot.placeholder")}
-              className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-accent-violet/60 transition-colors placeholder:text-ink-muted"
-            />
-            <button
-              type="submit"
-              disabled={loading || !input.trim()}
-              aria-label={t("chatbot.send")}
-              className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-brand disabled:opacity-40 transition-opacity"
-            >
-              <FiSend size={16} />
-            </button>
+            <div className="flex items-center gap-2">
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder={t("chatbot.placeholder")}
+                className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-accent-violet/60 transition-colors placeholder:text-ink-muted"
+              />
+              <button
+                type="submit"
+                disabled={loading || cooldown > 0 || !input.trim()}
+                aria-label={t("chatbot.send")}
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-brand disabled:opacity-40 transition-opacity"
+              >
+                <FiSend size={16} />
+              </button>
+            </div>
+            {cooldown > 0 && (
+              <p className="text-xs text-ink-muted/70 mt-1.5 px-1">
+                {t("chatbot.cooldown", { seconds: cooldown })}
+              </p>
+            )}
           </form>
         </div>
       )}

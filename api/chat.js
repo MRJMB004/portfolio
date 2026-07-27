@@ -11,11 +11,11 @@
 //
 // La clé n'est JAMAIS envoyée au navigateur : elle reste côté serveur.
 
-// Alias "toujours à jour" : Google le fait pointer automatiquement vers son
-// dernier modèle Flash stable, ce qui évite d'avoir à changer ce nom à chaque
-// fois que Google sort une nouvelle version (ex: gemini-2.5-flash a été
-// remplacé par gemini-3.6-flash quelques mois après son lancement).
-const MODEL = "gemini-flash-latest";
+// "Flash-Lite" : légèrement moins puissant que le Flash "phare", mais son quota
+// gratuit est nettement plus généreux (pensé par Google pour les usages à
+// volume plus élevé) — largement suffisant pour un chatbot de portfolio qui
+// répond à des questions simples sur un profil.
+const MODEL = "gemini-2.5-flash-lite";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {

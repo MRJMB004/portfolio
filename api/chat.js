@@ -85,12 +85,10 @@ export default async function handler(req, res) {
           contents,
           generationConfig: {
             temperature: 0.6,
-            maxOutputTokens: 500,
-            // Pas de "réflexion" interne nécessaire pour de simples questions/
-            // réponses sur le profil : ça évite que la réponse visible soit
-            // coupée avant la fin (le budget de tokens est partagé entre la
-            // réflexion cachée et la réponse affichée).
-            thinkingConfig: { thinkingBudget: 0 },
+            // Budget généreux : le modèle utilise une partie de ces tokens
+            // pour "réfléchir" en interne avant de répondre, donc on laisse
+            // de la marge pour que la réponse visible ne soit jamais coupée.
+            maxOutputTokens: 1024,
           },
         }),
       }

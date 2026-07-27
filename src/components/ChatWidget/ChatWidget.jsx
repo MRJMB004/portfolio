@@ -83,12 +83,12 @@ export default function ChatWidget() {
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error(data?.error || "request_failed");
+        throw new Error(data?.error || "");
       }
 
       setMessages((prev) => [...prev, { role: "bot", text: data.reply }]);
-    } catch {
-      setError(t("chatbot.error"));
+    } catch (err) {
+      setError(err.message || t("chatbot.error"));
     } finally {
       setLoading(false);
     }

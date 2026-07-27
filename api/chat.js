@@ -97,6 +97,13 @@ export default async function handler(req, res) {
     if (!geminiRes.ok) {
       const detail = await geminiRes.text();
       console.error("[chat] Échec Gemini:", geminiRes.status, detail);
+
+      if (geminiRes.status === 429) {
+        return res.status(429).json({
+          error: "Trop de questions en peu de temps (limite du plan gratuit). Réessaie dans une minute.",
+        });
+      }
+
       return res.status(502).json({ error: "Le chatbot est momentanément indisponible, réessaie bientôt." });
     }
 

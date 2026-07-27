@@ -7,7 +7,7 @@
 // propos du propriétaire du portfolio.
 //
 // Configuration (Vercel → Project Settings → Environment Variables) :
-//   GEMINI_API_KEY   clé API Gemini (https://aistudio.google.com/apikey) — gratuit
+//   GEMINI_API_KEY2   clé API Gemini (https://aistudio.google.com/apikey) — gratuit
 //
 // La clé n'est JAMAIS envoyée au navigateur : elle reste côté serveur.
 
@@ -19,9 +19,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Méthode non autorisée." });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY2;
   if (!apiKey) {
-    console.error("[chat] GEMINI_API_KEY manquante dans les variables d'environnement Vercel.");
+    console.error("[chat] GEMINI_API_KEY2 manquante dans les variables d'environnement Vercel.");
     return res.status(500).json({ error: "Chatbot non configuré (clé API manquante)." });
   }
 

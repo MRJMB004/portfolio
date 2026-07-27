@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import ScrollTop from "../components/ScrollTop/ScrollTop";
+import ChatWidget from "../components/ChatWidget/ChatWidget";
 
 export default function MainLayout({ children }) {
   return (
@@ -9,6 +10,7 @@ export default function MainLayout({ children }) {
       <main>{children}</main>
       <Footer />
       <ScrollTop />
+      <ChatWidget />
     </div>
   );
 }

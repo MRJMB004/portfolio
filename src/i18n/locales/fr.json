@@ -73,5 +73,26 @@
   "language": {
     "fr": "Français",
     "en": "English"
+  },
+  "chatbot": {
+    "title": "Assistant IA",
+    "subtitle": "Pose-moi une question sur {{name}}",
+    "greeting": "👋 Salut ! Je suis l'assistant virtuel de {{name}}. Pose-moi une question sur son parcours, ses compétences, ses projets ou comment le contacter !",
+    "placeholder": "Écris ta question…",
+    "send": "Envoyer",
+    "typing": "en train d'écrire…",
+    "error": "Oups, je n'ai pas pu répondre. Réessaie dans un instant.",
+    "openLabel": "Ouvrir le chat",
+    "closeLabel": "Fermer le chat",
+    "quickQuestions": [
+      "👋 Bonjour, qui êtes-vous ?",
+      "🎓 Quel est votre parcours ?",
+      "💻 Quelles technologies maîtrisez-vous ?",
+      "📂 Montrez-moi vos projets.",
+      "📞 Comment vous contacter ?",
+      "📄 Puis-je télécharger votre CV ?",
+      "💼 Êtes-vous disponible pour travailler ?",
+      "🌍 Où habitez-vous ?"
+    ]
   }
 }

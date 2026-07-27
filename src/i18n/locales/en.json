@@ -73,5 +73,26 @@
   "language": {
     "fr": "Français",
     "en": "English"
+  },
+  "chatbot": {
+    "title": "AI Assistant",
+    "subtitle": "Ask me anything about {{name}}",
+    "greeting": "👋 Hi! I'm {{name}}'s virtual assistant. Ask me about their background, skills, projects, or how to get in touch!",
+    "placeholder": "Type your question…",
+    "send": "Send",
+    "typing": "typing…",
+    "error": "Oops, I couldn't reply. Please try again in a moment.",
+    "openLabel": "Open chat",
+    "closeLabel": "Close chat",
+    "quickQuestions": [
+      "👋 Hi, who are you?",
+      "🎓 What's your background?",
+      "💻 What technologies do you know?",
+      "📂 Show me your projects.",
+      "📞 How can I contact you?",
+      "📄 Can I download your CV?",
+      "💼 Are you available for work?",
+      "🌍 Where do you live?"
+    ]
   }
 }

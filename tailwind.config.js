@@ -49,6 +49,10 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        fadeIn: {
+          "0%": { opacity: 0, transform: "translateY(8px) scale(0.98)" },
+          "100%": { opacity: 1, transform: "translateY(0) scale(1)" },
+        },
       },
       animation: {
         float: "float 6s ease-in-out infinite",
@@ -56,6 +60,7 @@ export default {
         pulseGlow: "pulseGlow 4s ease-in-out infinite",
         blink: "blink 1s step-end infinite",
         marquee: "marquee 30s linear infinite",
+        "fade-in": "fadeIn 0.2s ease-out",
       },
     },
   },
